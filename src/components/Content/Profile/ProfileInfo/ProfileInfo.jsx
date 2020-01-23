@@ -25,7 +25,6 @@ const ProfileInfo = (props) => {
                 <li>{props.profile.contacts.youtube}</li>
                 <li>{props.profile.contacts.github}</li>
                 <li>{props.profile.contacts.mainLink}</li>
-                <li></li>
             </div>
         </div>
     )
