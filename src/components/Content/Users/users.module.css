@@ -1,0 +1,15 @@
+.avatar img {
+    width: 64px;
+    height: 64px;
+}
+
+.selectedPage {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: normal;
+}
+
+.otherPage {
+    padding-left: 5px;
+    padding-right: 5px;
+}

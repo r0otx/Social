@@ -1,0 +1,24 @@
+.gridPhoto {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "photo1 photo2 photo3" "photo4 photo5 photo6" "photo7 photo8 photo9";
+}
+
+.photo1 { grid-area: photo1; color: red; border: solid 1px red; height: 150px;}
+
+.photo2 { grid-area: photo2; color: white; border: solid 1px red; height: 150px;}
+
+.photo3 { grid-area: photo3; color: red; border: solid 1px red; height: 150px;}
+
+.photo4 { grid-area: photo4; color: white; border: solid 1px red; height: 150px;}
+
+.photo5 { grid-area: photo5; color: red; border: solid 1px red; height: 150px;}
+
+.photo6 { grid-area: photo6; color: white; border: solid 1px red; height: 150px;}
+
+.photo7 { grid-area: photo7; color: red; border: solid 1px red; height: 150px;}
+
+.photo8 { grid-area: photo8; color: white; border: solid 1px red; height: 150px;}
+
+.photo9 { grid-area: photo9; color: red; border: solid 1px red; height: 150px;}

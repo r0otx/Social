@@ -1,0 +1,7 @@
+.gridMessages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "usersColumn dialogsColumn";
+    padding: 10px;
+}

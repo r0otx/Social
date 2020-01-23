@@ -1,0 +1,7 @@
+.dialogsColumn {
+    grid-area: dialogsColumn;
+}
+
+.inputArea {
+    padding-top: 10px;
+}
