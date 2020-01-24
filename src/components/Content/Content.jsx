@@ -11,7 +11,7 @@ import ProfileContainer from "./Profile/ProfileContainer";
 const Content = () => {
     return (
         <div className={s.content}>
-            <Route path='/profile' render={() => <ProfileContainer/>}/>
+            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
             <Route path='/messages' render={() => <Messages/>}/>
             <Route path='/users' render={() => <UsersContainer/>}/>
             <Route path='/music' render={() => <Music/>}/>

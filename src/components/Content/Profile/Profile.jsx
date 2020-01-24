@@ -8,9 +8,7 @@ const Profile = (props) => {
         <div className={s.profile}>
             <div className={s.bigImg}></div>
             <ProfileInfo profile={props.profile}/>
-            <div className={s.post}>
-                <PostsContainer/>
-            </div>
+            <PostsContainer/>
         </div>
     );
 }

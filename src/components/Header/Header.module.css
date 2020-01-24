@@ -9,3 +9,9 @@
     background-size: 80px auto;
     background-repeat: no-repeat;
 }
+
+.loginBlock {
+    float: right;
+    margin-top: -50px;
+    padding-right: 25px;
+}
