@@ -10,18 +10,18 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: false
 };
 
 const usersReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case FOLLOW:
             return {
                 ...state,
-                //users: [...state.users],
                 users: state.users.map(u => {
                     if (u.id === action.userId) {
-                        return {...u, follow: true}
+                        return {...u, followed: true}
                     }
                     return u;
                 })
@@ -29,10 +29,9 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                //users: [...state.users],
                 users: state.users.map(u => {
                     if (u.id === action.userId) {
-                        return {...u, follow: false}
+                        return {...u, followed: false}
                     }
                     return u;
                 })

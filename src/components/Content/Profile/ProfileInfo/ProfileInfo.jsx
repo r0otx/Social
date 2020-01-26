@@ -9,7 +9,7 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={s.gridContainer}>
-            <div className={s.Avatar}><img src={props.profile.photos.large}/></div>
+            <div className={s.Avatar}><img src={props.profile.photos.large} alt={'Avatar'}/></div>
             <div className={s.BIO}>
                 Full Name: {props.profile.fullName},<br/>
                 Search Job: {props.profile.lookingForAJobDescription},<br/>
