@@ -3,6 +3,7 @@ import s from "./users.module.css";
 import noPhoto from "../../../assets/images/noPhoto.jpg";
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../../api/api";
+import {setFollowProgress} from "../../../redux/users-reducer";
 
 let Users = (props) => {
 
@@ -35,18 +36,22 @@ let Users = (props) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button disabled={props.followProgress.some(id => id === u.id)} onClick={() => {
+                                    props.setFollowProgress(true, u.id);
                                     usersAPI.delFollow(u).then(data => {
                                             if (data.resultCode === 0) {
                                                 props.unfollow(u.id);
                                             }
+                                        props.setFollowProgress(false, u.id);
                                         });
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
+                                : <button disabled={props.followProgress.some(id => id === u.id)} onClick={() => {
+                                    props.setFollowProgress(true, u.id);
                                     usersAPI.getFollow(u).then(data => {
                                             if (data.resultCode === 0) {
                                                 props.follow(u.id);
                                             }
+                                            props.setFollowProgress(false, u.id);
                                         });
                                 }}>Follow</button>}
                         </div>
