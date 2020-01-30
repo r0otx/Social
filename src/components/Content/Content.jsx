@@ -7,10 +7,12 @@ import Music from "./Music/Music";
 import Setting from "./Setting/Setting";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import Login from "./Login/Login";
 
 const Content = () => {
     return (
         <div className={s.content}>
+            <Route path='/login' render={() => <Login/>}/>
             <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
             <Route path='/messages' render={() => <Messages/>}/>
             <Route path='/users' render={() => <UsersContainer/>}/>

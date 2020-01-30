@@ -12,10 +12,19 @@ export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
     },
-    getFollow(u) {
-        return instance.post(`follow/${u.id}`).then(response => response.data);
+    getFollow(userId) {
+        return instance.post(`follow/${userId}`).then(response => response.data);
     },
-    delFollow(u) {
-        return instance.delete(`follow/${u.id}`).then(response => response.data);
+    delFollow(userId) {
+        return instance.delete(`follow/${userId}`).then(response => response.data);
+    },
+    getProfile(userId) {
+       return instance.get(`profile/` + userId);
+            }
+};
+
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`);
     }
 };
