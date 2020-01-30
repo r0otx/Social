@@ -1,14 +1,15 @@
 import {addMessage, addMessageText} from "../../../../redux/message-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
         newMessageText: state.messagesPage.newMessageText,
         messagesItem: state.messagesPage.messagesItem,
-        isAuth: state.auth.isAuth
     }
-}
+};
 /* let mapDispatchToProps = (dispatch) => {
     return {
         updateNewMessageText: (text) => {
@@ -21,7 +22,10 @@ let mapStateToProps = (state) => {
     }
 } */
 
-export default connect(mapStateToProps, {
-    updateNewMessageText: addMessageText,
-    sendMessage: addMessage
-})(Dialogs);
+export default compose(
+    connect(mapStateToProps, {
+        updateNewMessageText: addMessageText,
+        sendMessage: addMessage
+    }),
+    withAuthRedirect
+)(Dialogs);
