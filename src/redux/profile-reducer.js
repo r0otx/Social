@@ -46,6 +46,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
+//Action Creators
 export const addPostActionCreator = () => {
     return {
         type: ADD_POST
@@ -62,6 +63,8 @@ export const setUserProfile = (profile) => {
         type: SET_USER_PROFILE, profile
     }
 };
+
+//Thunks
 export const getUserProfile = (userId) => (dispatch) => {
     usersAPI.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data));
