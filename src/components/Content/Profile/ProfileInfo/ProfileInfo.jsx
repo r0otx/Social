@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
         <div className={s.gridContainer}>
             <div className={s.Avatar}><img src={props.profile.photos.large} alt={'Avatar'}/></div>
             <div className={s.BIO}>
-                <ProfileStatus status={"Hi bro"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 Full Name: {props.profile.fullName},<br/>
                 Search Job: {props.profile.lookingForAJobDescription},<br/>
                 Status: {props.profile.aboutMe}
