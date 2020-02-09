@@ -3,7 +3,6 @@ import s from './Users.module.css';
 import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
-    debugger
     let user = props.usersItem.usersItem.map(user => <NavLink to={"/messages/" + user.id} key={user.id}>
         <li>{user.name}</li>
     </NavLink>);
