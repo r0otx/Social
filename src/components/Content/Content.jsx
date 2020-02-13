@@ -8,19 +8,35 @@ import Setting from "./Setting/Setting";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
 import Login from "./Login/Login";
+import {connect} from "react-redux";
+import {getInitialized} from "../../redux/content-reducer";
+import Preloader from "./common/Preloader/Preloader";
 
-const Content = () => {
-    return (
-        <div className={s.content}>
-            <Route path='/login' render={() => <Login/>}/>
-            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-            <Route path='/messages' render={() => <Messages/>}/>
-            <Route path='/users' render={() => <UsersContainer/>}/>
-            <Route path='/music' render={() => <Music/>}/>
-            <Route path='/album' render={() => <Album/>}/>
-            <Route path='/settings' render={() => <Setting/>}/>
-        </div>
-    );
+class Content extends React.Component {
+    componentDidMount() {
+        this.props.getInitialized();
+    }
+
+    render() {
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+        return (
+            <div className={s.content}>
+                <Route path='/login' render={() => <Login/>}/>
+                <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                <Route path='/messages' render={() => <Messages/>}/>
+                <Route path='/users' render={() => <UsersContainer/>}/>
+                <Route path='/music' render={() => <Music/>}/>
+                <Route path='/album' render={() => <Album/>}/>
+                <Route path='/settings' render={() => <Setting/>}/>
+            </div>
+        );
+    }
 }
 
-export default Content;
+const mapStateToProps = (state) => ({
+    initialized: state.content.initialized
+});
+
+export default connect(mapStateToProps, {getInitialized})(Content);
