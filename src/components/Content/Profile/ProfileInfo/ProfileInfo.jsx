@@ -3,6 +3,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import s from './ProfileInfo.module.css';
 import ProfileStatus from "./ProfileStatus";
 import noavatar from "../../../../assets/images/noavatar.png"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -15,7 +16,7 @@ const ProfileInfo = (props) => {
         <div className={s.gridContainer}>
             <div className={s.Avatar}><img src={props.profile.photos.large != null ? props.profile.photos.large : noavatar} alt={'Avatar'}/></div>
             <div className={s.BIO}>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 Full Name: {props.profile.fullName},<br/>
                 Search Job: {props.profile.lookingForAJobDescription},<br/>
                 About Me: {props.profile.aboutMe}
