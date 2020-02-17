@@ -50,10 +50,9 @@ const Posts = (props) => {
             <div className={s.post}>Likes: {post.likesCount}
                 <div className={s.like}>
                     {post.stateLike
-                        ? <img onClick={() => handlerLike(post.id)} src={like} alt={"like"} width={"32px"} height={"32px"}/>
-                        : <img onClick={() => handlerLike(post.id)} src={unlike} alt={"unlike"} width={"32px"} height={"32px"}/>
+                        ? <img onClick={() => handlerLike(post.id, post.likesCount--)} src={like} alt={"like"} width={"32px"} height={"32px"}/>
+                        : <img onClick={() => handlerLike(post.id, post.likesCount++)} src={unlike} alt={"unlike"} width={"32px"} height={"32px"}/>
                     }
-
                 </div>
             </div>
         </div>);
