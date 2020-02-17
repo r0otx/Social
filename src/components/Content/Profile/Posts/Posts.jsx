@@ -32,7 +32,7 @@ const Posts = (props) => {
         ]);
     }, []);
 
-    const handlerLike = id => {
+    const handlerLike = (id) => {
         const post = props.posts.find(e => {
             return e.id === id;
         });

@@ -2,7 +2,6 @@ import {profileAPI} from "../api/api";
 import React from "react";
 
 const ADD_POST = 'ADD-POST';
-const ADD_LIKE = 'ADD-LIKE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS';
@@ -20,15 +19,6 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_LIKE:
-            let liked = action.profilePostLike;
-            let postId = action.postId;
-            return {
-                ...state,
-                stateLike: [...state.posts.map(posts => posts.id === postId
-                    ? posts.stateLike = liked
-                    : posts.stateLike)]
-            };
         case ADD_POST:
             let newPost = {
                 id: state.posts.length + 1,
@@ -64,11 +54,6 @@ const profileReducer = (state = initialState, action) => {
 }
 
 //Action Creators
-export const addLikeActionCreator = (profilePostLike, postId) => {
-    return {
-        type: ADD_LIKE, profilePostLike, postId
-    }
-};
 export const addPostActionCreator = (profilePost) => {
     return {
         type: ADD_POST, profilePost

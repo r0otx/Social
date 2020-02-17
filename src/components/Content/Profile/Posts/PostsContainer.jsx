@@ -11,9 +11,5 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps,
-        {
-            addPost: addPostActionCreator,
-            addLike: addLikeActionCreator
-        })
+    connect(mapStateToProps, {addPost: addPostActionCreator})
 )(Posts);
