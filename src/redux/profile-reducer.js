@@ -1,16 +1,18 @@
 import {profileAPI} from "../api/api";
+import React from "react";
 
 const ADD_POST = 'ADD-POST';
+const ADD_LIKE = 'ADD-LIKE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS';
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Posts 1', likesCount: 10},
-        {id: 2, message: 'Posts 2', likesCount: 15},
-        {id: 3, message: 'Posts 3', likesCount: 20},
-        {id: 4, message: 'Posts 4', likesCount: 25}
+        {id: 1, message: 'Posts 1', likesCount: 0, stateLike: false},
+        {id: 2, message: 'Posts 2', likesCount: 0, stateLike: false},
+        {id: 3, message: 'Posts 3', likesCount: 0, stateLike: false},
+        {id: 4, message: 'Posts 4', likesCount: 0, stateLike: false}
     ],
     profile: null,
     status: ''
@@ -18,11 +20,21 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ADD_LIKE:
+            let liked = action.profilePostLike;
+            let postId = action.postId;
+            return {
+                ...state,
+                stateLike: [...state.posts.map(posts => posts.id === postId
+                    ? posts.stateLike = liked
+                    : posts.stateLike)]
+            };
         case ADD_POST:
             let newPost = {
-                id: 5,
+                id: state.posts.length + 1,
                 message: action.profilePost,
-                likesCount: 0
+                likesCount: 0,
+                stateLike: false
             };
             return {
                 ...state,
@@ -52,6 +64,11 @@ const profileReducer = (state = initialState, action) => {
 }
 
 //Action Creators
+export const addLikeActionCreator = (profilePostLike, postId) => {
+    return {
+        type: ADD_LIKE, profilePostLike, postId
+    }
+};
 export const addPostActionCreator = (profilePost) => {
     return {
         type: ADD_POST, profilePost

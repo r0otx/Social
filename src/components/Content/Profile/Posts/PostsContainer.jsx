@@ -1,4 +1,4 @@
-import {addPostActionCreator} from "../../../../redux/profile-reducer";
+import {addDislikeActionCreator, addLikeActionCreator, addPostActionCreator} from "../../../../redux/profile-reducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 import {compose} from "redux";
@@ -12,5 +12,8 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps,
-        {addPost: addPostActionCreator})
+        {
+            addPost: addPostActionCreator,
+            addLike: addLikeActionCreator
+        })
 )(Posts);

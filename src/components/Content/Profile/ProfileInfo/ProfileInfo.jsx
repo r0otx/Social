@@ -1,7 +1,6 @@
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import s from './ProfileInfo.module.css';
-import ProfileStatus from "./ProfileStatus";
 import noavatar from "../../../../assets/images/noavatar.png"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
@@ -10,7 +9,7 @@ const ProfileInfo = (props) => {
         return <Preloader/>
     }
 
-    let profileLinks = Object.keys(props.profile.contacts).map( item => <li>{item}: {props.profile.contacts[item]}</li>);
+    let profileLinks = Object.keys(props.profile.contacts).map( item => <li key={item}>{item}: {props.profile.contacts[item]}</li>);
 
     return (
         <div className={s.gridContainer}>
