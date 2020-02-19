@@ -1,12 +1,24 @@
 .nav {
     grid-area: nav;
-    background-color: blue;
     color: white;
     text-decoration: none;
-    padding: 10px;
 }
 
 a {
-    color: white;
+    color: #285473;
     text-decoration: none;
+    cursor: pointer;
+}
+
+a li {
+    list-style-type: none;
+    padding: 4px;
+    margin: 10px 10px 0 0;
+}
+
+a li:hover {
+    background: #e1e5eb;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 4px;
 }

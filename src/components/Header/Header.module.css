@@ -1,17 +1,17 @@
 .header {
     grid-area: header;
-    background-color: red;
+    background-color: #4a76a8;
 }
 
 .logo {
-    height: 80px;
-    background-image: url("http://www.myiconfinder.com/uploads/iconsets/256-256-7bcc3fbdaff0c8fbfa4bf8a868e3f053-facebook.png");
-    background-size: 80px auto;
-    background-repeat: no-repeat;
+    background: no-repeat 50% / contain;
+    width: 34px;
+    height: 19px;
+    margin: 11px 10px 0 10px;
 }
 
 .loginBlock {
     float: right;
-    margin-top: -50px;
+    margin-top: -23px;
     padding-right: 25px;
 }

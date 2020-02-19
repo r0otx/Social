@@ -1,12 +1,67 @@
 .gridContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "Avatar BIO Contacts";
+    grid-template-areas: "avatar BIO" "friends posts";
 }
 
-.Avatar { grid-area: Avatar; }
+.avatar {
+    grid-area: avatar;
+    height: 250px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 10px 10px 10px 0px;
+}
 
-.BIO { grid-area: BIO; }
+.friends {
+    grid-area: friends;
+    height: 250px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: -80px 10px 10px 0px;
+}
 
-.Contacts { grid-area: Contacts; }
+.BIO {
+    grid-area: BIO;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 10px 10px 10px 0px;
+    padding: 0 0 10px 10px;
+    height: 330px;
+}
+
+.posts {
+    grid-area: posts;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 10px 10px 10px 0px;
+    padding: 0 0 10px 10px;
+    height: 100%;
+}
+
+.page_name {
+    font-size: 24px;
+    line-height: 25px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 10px 0px 0px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 1px;
+    color: #000;
+}
+
+.hover {
+    padding: 10px 0 0 0;
+    margin: 0px 5px 5px 0px;
+    border-bottom: 1px solid #e7e8ec;
+}
+
+li {
+    list-style-type: none;
+}
