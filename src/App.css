@@ -1,8 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #edeef0;
+}
+
 .gridContainer {
   display: grid;
-  background-color: #edeef0;
   grid-template-columns: 1fr 1fr 5fr 1fr;
-  grid-template-rows: 45px 900px;
+  grid-template-rows: 45px 100%;
   grid-template-areas: "header header header header" ". nav content .";
 }
 

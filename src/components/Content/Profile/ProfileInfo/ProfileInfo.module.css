@@ -65,3 +65,14 @@
 li {
     list-style-type: none;
 }
+
+.avaImg {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.blockTitle {
+    margin: 5px 0 0 10px;
+}

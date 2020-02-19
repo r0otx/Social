@@ -13,3 +13,8 @@
     padding: 5px;
     color: yellowgreen;
 }
+
+textarea {
+    width: 95%;
+    margin: 10px 0 5px 0px;
+}

@@ -15,13 +15,13 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={s.gridContainer}>
-            <div className={s.avatar}><img
+            <div className={s.avatar}><div className={s.avaImg}><img
                 src={props.profile.photos.large != null ? props.profile.photos.large : noavatar}
                 alt={'Avatar'}
                 width={"200px"}
-                height={"200px"}/></div>
+                height={"200px"}/></div></div>
             <div className={s.friends}>
-                Друзья
+                <div className={s.blockTitle}>Друзья</div>
             </div>
             <div className={s.BIO}>
                 <h1 className={s.page_name}>{props.profile.fullName}</h1>
