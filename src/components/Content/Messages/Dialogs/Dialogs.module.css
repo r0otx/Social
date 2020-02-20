@@ -1,7 +1,25 @@
 .dialogsColumn {
     grid-area: dialogsColumn;
+    margin-left: 1px;
+    height: 100%;
+    box-sizing: border-box;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 }
 
 .inputArea {
-    padding-top: 10px;
+    margin-left: 5px;
+}
+
+.dialogs {
+    max-height: 500px;
+    height: 500px;
+    overflow-y:auto
+}
+
+li {
+    margin-left: 5px;
 }

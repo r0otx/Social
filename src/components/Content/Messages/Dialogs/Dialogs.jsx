@@ -13,7 +13,7 @@ const DialogsForm = (props) => {
                 <Field placeholder={"Ваше сообщение"}
                        validate={[required, maxLength150]}
                        name={"newMessage"}
-                       component={Textarea} />
+                       component={Textarea}/>
             </div>
             <div>
                 <button>Send Message</button>
@@ -34,9 +34,13 @@ const Dialogs = (props) => {
     return (
         <div>
             <div className={s.dialogsColumn}>
+                <div className={s.dialogs}>
                 {message}
+                </div>
+                <div className={s.inputArea}>
+                    <DialogsReduxForm onSubmit={addNewMessage}/>
+                </div>
             </div>
-            <DialogsReduxForm onSubmit={addNewMessage}/>
         </div>
     );
 };
