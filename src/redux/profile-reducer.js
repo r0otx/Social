@@ -1,9 +1,11 @@
 import {profileAPI} from "../api/api";
+import noAvatar from "../assets/images/noavatar.png";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_USER_STATUS = 'SET_USER_STATUS';
-const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS';
+const ADD_POST = "ADD-POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_STATUS = "SET_USER_STATUS";
+const UPDATE_USER_STATUS = "UPDATE_USER_STATUS";
+const ADD_AVATAR = "ADD_AVATAR";
 
 let initialState = {
     posts: [
@@ -13,7 +15,8 @@ let initialState = {
         {id: 4, message: 'Posts 4', likesCount: 0, stateLike: false}
     ],
     profile: null,
-    status: ''
+    status: '',
+    avatar: noAvatar
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -28,6 +31,14 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [...state.posts, newPost]
+            };
+        case ADD_AVATAR:
+            let newAvatar = {
+                avatar: action.avatarFile
+            };
+            return {
+                ...state,
+                avatar: [...state.avatar, newAvatar]
             };
         case SET_USER_PROFILE: {
             return {
@@ -58,6 +69,11 @@ export const addPostActionCreator = (profilePost) => {
         type: ADD_POST, profilePost
     }
 };
+export const addAvatarActionCreator = (avatarFile) => {
+    return {
+        type: ADD_AVATAR, avatarFile
+    }
+};
 export const setUserProfile = (profile) => {
     return {
         type: SET_USER_PROFILE, profile
@@ -79,6 +95,14 @@ export const getUserProfile = (userId) => (dispatch) => {
 export const getUserStatus = (userId) => (dispatch) => {
     profileAPI.getStatus(userId).then(response => {
         dispatch(setUserStatus(response.data));
+    })
+};
+
+export const getUserAvatar = (avatarFile) => (dispatch) => {
+    profileAPI.updatePhoto(avatarFile).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(addAvatarActionCreator(response.data.data.photos.small));
+        }
     })
 };
 

@@ -11,10 +11,12 @@ let maxLength30 = maxLengthCreator(30);
 const PostsForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div><Field name={"profilePost"}
-                        component={Textarea}
-                        placeholder={"Enter you post"}
-                        validate={[required, maxLength30]}/></div>
+            <div>
+                <Field name={"profilePost"}
+                       component={Textarea}
+                       placeholder={"Enter you post"}
+                       validate={[required, maxLength30]}/>
+            </div>
             <div>
                 <button>Send Post</button>
             </div>
@@ -45,13 +47,16 @@ const Posts = (props) => {
 
     let post = props.posts.map(post =>
         <div id={post.id} key={post.id}>
-            <div className={s.avatar}></div>
+            <div className={s.avatar}><img src="https://i2.wp.com/it-tehnik.ru/wp-content/uploads/girl.png"
+                                           alt={"userpic"}/></div>
             <div className={s.text}>{post.message}</div>
             <div className={s.post}>Likes: {post.likesCount}
                 <div className={s.like}>
                     {post.stateLike
-                        ? <img onClick={() => handlerLike(post.id, post.likesCount--)} src={like} alt={"like"} width={"32px"} height={"32px"}/>
-                        : <img onClick={() => handlerLike(post.id, post.likesCount++)} src={unlike} alt={"unlike"} width={"32px"} height={"32px"}/>
+                        ? <img onClick={() => handlerLike(post.id, post.likesCount--)} src={like} alt={"like"}
+                               width={"32px"} height={"32px"}/>
+                        : <img onClick={() => handlerLike(post.id, post.likesCount++)} src={unlike} alt={"unlike"}
+                               width={"32px"} height={"32px"}/>
                     }
                 </div>
             </div>

@@ -20,3 +20,13 @@ export const Input = ({input, meta, ...props}) => {
         </div>
     );
 };
+
+export const InputFile = ({input, meta, ...props}) => {
+    let hasError = meta.touched && meta.error;
+    return (
+        <div className={s.formControl + " " + (hasError ? s.error : "")}>
+            <div><input type="file" {...input} {...props}/></div>
+            <div>{hasError && <span>{meta.error}</span>}</div>
+        </div>
+    );
+};

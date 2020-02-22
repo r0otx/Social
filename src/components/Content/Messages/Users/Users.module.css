@@ -8,3 +8,8 @@
     overflow: hidden;
     transition: opacity 0.1s linear;
 }
+
+.usersBody {
+    height: 30px;
+    border-bottom: 1px solid #edeef0;
+}
