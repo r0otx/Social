@@ -23,7 +23,13 @@ const LoginForm = (props) => {
                             component={Input}
                             type={"password"}
                             validate={[required, maxLength]}/></div>
-                <div><Field type={"checkbox"} name={"remember"} component={"input"}/>Remember me</div>
+                {props.captcha &&
+                <div><Field placeholder={"Captcha"}
+                            name={"captcha"}
+                            component={Input}/>
+                    <img src={props.captcha}/>
+                </div>}
+                <div><Field type={"checkbox"} name={"rememberMe"} component={"input"}/>Remember me</div>
                 {props.error && <div className={s.formControlSummaryError}>
                     {props.error}
                 </div> }
@@ -42,13 +48,14 @@ const Login = (props) => {
         return <Redirect to={"/profile"}/>
     }
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     };
-    return <LoginReduxForm onSubmit={onSubmit}/>
+    return <LoginReduxForm onSubmit={onSubmit} captcha={props.getCaptcha}/>
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    getCaptcha: state.auth.getCaptcha
 });
 
 export default connect(mapStateToProps, {login})(Login);

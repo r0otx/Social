@@ -6,7 +6,6 @@ import PostsContainer from "../Posts/PostsContainer";
 import Avatar from "./Avatar";
 
 const ProfileInfo = (props) => {
-
     if (!props.profile) {
         return <Preloader/>
     }
@@ -16,14 +15,19 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.gridContainer}>
             <div className={s.avatar}>
-                <Avatar photo={props.profile.photos} updateAvatar={props.updateAvatar} />
+                <Avatar avatar={props.avatar}
+                        updateAvatar={props.updateAvatar}
+                        userId={props.profile.userId}
+                        youId={props.youId}
+                        profile={props.profile.photos}/>
             </div>
             <div className={s.friends}>
                 <div className={s.blockTitle}>Друзья</div>
             </div>
             <div className={s.BIO}>
                 <h1 className={s.page_name}>{props.profile.fullName}</h1>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status}
+                                        updateStatus={props.updateStatus}/>
                 <div className={s.hover}/>
                 Search
                 Job: {props.profile.lookingForAJobDescription != null ? props.profile.lookingForAJobDescription : "Ищу работу"},<br/>

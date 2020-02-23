@@ -1,5 +1,4 @@
 import {profileAPI} from "../api/api";
-import noAvatar from "../assets/images/noavatar.png";
 
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -16,7 +15,7 @@ let initialState = {
     ],
     profile: null,
     status: '',
-    avatar: noAvatar
+    avatar: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -30,15 +29,12 @@ const profileReducer = (state = initialState, action) => {
             };
             return {
                 ...state,
-                posts: [...state.posts, newPost]
+                posts: [newPost, ...state.posts]
             };
         case ADD_AVATAR:
-            let newAvatar = {
-                avatar: action.avatarFile
-            };
             return {
                 ...state,
-                avatar: [...state.avatar, newAvatar]
+                avatar: action.avatarFile
             };
         case SET_USER_PROFILE: {
             return {
@@ -89,6 +85,7 @@ export const setUserStatus = (status) => {
 export const getUserProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data));
+        dispatch(addAvatarActionCreator(response.data.photos.large));
     })
 };
 
@@ -98,10 +95,10 @@ export const getUserStatus = (userId) => (dispatch) => {
     })
 };
 
-export const getUserAvatar = (avatarFile) => (dispatch) => {
+export const updateUserAvatar = (avatarFile) => (dispatch) => {
     profileAPI.updatePhoto(avatarFile).then(response => {
         if (response.data.resultCode === 0) {
-            dispatch(addAvatarActionCreator(response.data.data.photos.small));
+            dispatch(addAvatarActionCreator(response.data.data.photos.large));
         }
     })
 };

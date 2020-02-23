@@ -6,7 +6,7 @@ import {Textarea} from "../../common/FormsControls/FormsControls";
 import like from "../../../../assets/images/like.png";
 import unlike from "../../../../assets/images/unlike.png";
 
-let maxLength30 = maxLengthCreator(30);
+let maxLength30 = maxLengthCreator(3000);
 
 const PostsForm = (props) => {
     return (
@@ -18,7 +18,7 @@ const PostsForm = (props) => {
                        validate={[required, maxLength30]}/>
             </div>
             <div>
-                <button>Send Post</button>
+                <button className={s.postButton}>Send Post</button>
             </div>
         </form>
     );

@@ -1,7 +1,14 @@
 import React, {useState} from "react";
 import s from "./ProfileInfo.module.css";
+import noAvatar from "../../../../assets/images/noavatar.png";
 
 const Avatar = (props) => {
+
+    let [state, setState] = useState({
+        fileSelected: false,
+        fileName: ''
+    });
+
     let fileInput = React.createRef();
     let handleSubmit = (avatarFile) => {
         avatarFile.preventDefault();
@@ -10,23 +17,39 @@ const Avatar = (props) => {
         props.updateAvatar(formData);
     };
 
-    let [button, setButton] = useState(false);
-    let input = button ? s.hideInput : '';
-    let buttonHide = !button ? s.hideButton : '';
+    let inputChange = () => {
+        setState({
+            fileSelected: true,
+            fileName: fileInput.current.files[0].name
+        });
+    };
+    let clickButton = () => {
+        setState({
+            fileSelected: false,
+            fileName: ''
+        });
+    };
 
     return (
         <div>
             <div className={s.avaImg}>
-                <img src={props.photo.large != null ? props.photo.large : props.avatar}
+                <img src={props.avatar !== null ? props.avatar : noAvatar}
                      alt={'Avatar'}
                      width={"200px"}
                      height={"200px"}/>
-            </div>
-            <div className={s.photoUpdateBtn}>
-                <form onSubmit={handleSubmit}>
-                    <input className={input} type="file" ref={fileInput} onChange={setButton} />
-                    <button className={buttonHide} onClick={setButton} type="submit">Upload</button>
-                </form>
+                {props.youId === props.userId &&
+                <div className={s.photoUpdateBtn}>
+                    <form onSubmit={handleSubmit}>
+                        <label className={s.hideInput}>
+                            {!state.fileSelected ? 'Load Photo' : state.fileName}
+                            <input type="file" ref={fileInput} onChange={inputChange} />
+                        </label><br/>
+                        {state.fileSelected &&
+                        <button className={s.uploadButton} onClick={clickButton} type="submit">Upload</button>
+                        }
+                    </form>
+                </div>
+                }
             </div>
         </div>
     );

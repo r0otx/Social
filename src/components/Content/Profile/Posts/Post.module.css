@@ -10,8 +10,30 @@
 
 .text {
     padding-left: 5px;
+    padding-right: 10px;
+    max-width: 600px;
+    word-wrap: break-word;
 }
 
 .like {
     margin-top: -10px;
+}
+
+.postButton {
+    color: #fff;
+    text-decoration: none;
+    background: #5181b8;
+    padding: .7em 1.5em;
+    border: none;
+    border-radius: 4px;
+    margin: 0 22px 0 0;
+    float: right;
+}
+
+.postButton:hover {
+    background: #2a5885;
+}
+
+.postButton:active {
+    background: rgb(152,15,0);
 }

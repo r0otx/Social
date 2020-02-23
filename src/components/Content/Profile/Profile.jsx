@@ -8,7 +8,9 @@ const Profile = (props) => {
             <ProfileInfo profile={props.profile}
                          status={props.status}
                          updateStatus={props.updateStatus}
-                         updateAvatar={props.updateAvatar}/>
+                         updateAvatar={props.updateAvatar}
+                         avatar={props.avatar}
+                         youId={props.authorizedUserId}/>
         </div>
     );
 };

@@ -7,11 +7,11 @@
 
 .avatar {
     grid-area: avatar;
-    height: 250px;
+    height: 290px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    margin: 10px 10px 10px 0px;
+    margin: 10px 10px 90px 0;
 }
 
 .photoUpdateBtn {
@@ -43,7 +43,7 @@
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    margin: 10px 10px 10px 0px;
+    margin: -30px 10px 10px 0;
     padding: 0 0 10px 10px;
     height: 100%;
 }
@@ -103,10 +103,24 @@ li {
     padding: 0 10px 0 10px;
 }
 
-.hideInput {
+.hideInput input {
     display: none;
 }
 
-.hideButton {
-    display: none;
+.uploadButton {
+    color: #fff;
+    text-decoration: none;
+    background: #5181b8;
+    padding: .7em 1.5em;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.uploadButton:hover {
+    background: #2a5885;
+}
+
+.uploadButton:active {
+    background: rgb(152,15,0);
 }
