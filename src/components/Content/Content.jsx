@@ -11,6 +11,7 @@ import Login from "./Login/Login";
 import {connect} from "react-redux";
 import {getInitialized} from "../../redux/content-reducer";
 import Preloader from "./common/Preloader/Preloader";
+import ProfileAboutMe from "./Profile/ProfileInfo/ProfileAboutMe";
 
 class Content extends React.Component {
     componentDidMount() {
@@ -30,6 +31,7 @@ class Content extends React.Component {
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/album' render={() => <Album/>}/>
                 <Route path='/settings' render={() => <Setting/>}/>
+                <Route path='/editprofile' render={() => <ProfileAboutMe/>}/>
             </div>
         );
     }

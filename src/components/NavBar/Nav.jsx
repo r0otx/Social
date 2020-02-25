@@ -22,7 +22,7 @@ const Nav = () => {
             <NavLink to="/album">
                 <li><FontAwesomeIcon icon={faImages} />Album</li>
             </NavLink>
-            <NavLink to="/settings">
+            <NavLink to="/editprofile">
                 <li><FontAwesomeIcon icon={faUserCog} />Settings</li>
             </NavLink>
         </div>

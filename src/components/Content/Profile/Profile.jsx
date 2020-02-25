@@ -6,11 +6,13 @@ const Profile = (props) => {
     return (
         <div className={s.profile}>
             <ProfileInfo profile={props.profile}
+                         youId={props.authorizedUserId}
+
                          status={props.status}
                          updateStatus={props.updateStatus}
+
                          updateAvatar={props.updateAvatar}
-                         avatar={props.avatar}
-                         youId={props.authorizedUserId}/>
+                         avatar={props.avatar}/>
         </div>
     );
 };

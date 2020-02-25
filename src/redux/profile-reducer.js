@@ -1,10 +1,12 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 const UPDATE_USER_STATUS = "UPDATE_USER_STATUS";
 const ADD_AVATAR = "ADD_AVATAR";
+const SET_USER_ABOUT_ME = "SET_USER_ABOUT_ME";
 
 let initialState = {
     posts: [
@@ -15,7 +17,8 @@ let initialState = {
     ],
     profile: null,
     status: '',
-    avatar: null
+    avatar: null,
+    profileInfo: []
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -54,15 +57,26 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case SET_USER_ABOUT_ME: {
+            return {
+                ...state,
+                profileInfo: action.formData
+            }
+        }
         default:
             return state;
     }
-}
+};
 
 //Action Creators
 export const addPostActionCreator = (profilePost) => {
     return {
         type: ADD_POST, profilePost
+    }
+};
+export const addAboutMeActionCreator = (formData) => {
+    return {
+        type: SET_USER_ABOUT_ME, formData
     }
 };
 export const addAvatarActionCreator = (avatarFile) => {
@@ -89,17 +103,20 @@ export const getUserProfile = (userId) => (dispatch) => {
     })
 };
 
-export const getUserStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
-        dispatch(setUserStatus(response.data));
+export const setUserAboutMe = (formData) => (dispatch) => {
+    profileAPI.setAboutMe(formData).then(response => {
+        if (response.data.resultCode === 1) {
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+            dispatch(stopSubmit("aboutMeForm", {_error: message}));
+        } else {
+        dispatch(addAboutMeActionCreator(formData))
+    }
     })
 };
 
-export const updateUserAvatar = (avatarFile) => (dispatch) => {
-    profileAPI.updatePhoto(avatarFile).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(addAvatarActionCreator(response.data.data.photos.large));
-        }
+export const getUserStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setUserStatus(response.data));
     })
 };
 
@@ -107,6 +124,14 @@ export const updateUserStatus = (status) => (dispatch) => {
     profileAPI.updateStatus(status).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(setUserStatus(status));
+        }
+    })
+};
+
+export const updateUserAvatar = (avatarFile) => (dispatch) => {
+    profileAPI.updatePhoto(avatarFile).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(addAvatarActionCreator(response.data.data.photos.large));
         }
     })
 };

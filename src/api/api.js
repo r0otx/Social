@@ -27,6 +27,9 @@ export const profileAPI = {
     getProfile(userId) {
         return instance.get(`profile/` + userId);
     },
+    setAboutMe(formData) {
+        return instance.put(`profile`, formData);
+    },
     getStatus(userId) {
         return instance.get(`profile/status/` + userId);
     },
@@ -51,7 +54,7 @@ export const authAPI = {
     logout() {
         return instance.delete(`auth/login`);
     },
-    captcha(captcha) {
+    captcha() {
         return instance.get(`security/get-captcha-url`);
     }
 };

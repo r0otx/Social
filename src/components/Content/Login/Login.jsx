@@ -27,7 +27,7 @@ const LoginForm = (props) => {
                 <div><Field placeholder={"Captcha"}
                             name={"captcha"}
                             component={Input}/>
-                    <img src={props.captcha}/>
+                    <img src={props.captcha} alt={"captcha"}/>
                 </div>}
                 <div><Field type={"checkbox"} name={"rememberMe"} component={"input"}/>Remember me</div>
                 {props.error && <div className={s.formControlSummaryError}>

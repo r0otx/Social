@@ -11,6 +11,7 @@ const Avatar = (props) => {
 
     let fileInput = React.createRef();
     let handleSubmit = (avatarFile) => {
+        debugger
         avatarFile.preventDefault();
         let formData = new FormData();
         formData.append("image", fileInput.current.files[0]);
@@ -45,7 +46,7 @@ const Avatar = (props) => {
                             <input type="file" ref={fileInput} onChange={inputChange} />
                         </label><br/>
                         {state.fileSelected &&
-                        <button className={s.uploadButton} onClick={clickButton} type="submit">Upload</button>
+                        <button className={s.uploadButton} type="submit">Upload</button>
                         }
                     </form>
                 </div>

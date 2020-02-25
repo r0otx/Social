@@ -11,7 +11,11 @@ const ProfileStatusWithHooks = (props) => {
     }, [props.status]);
 
     let activateEditMode = () => {
-        setEditMode(true);
+        if (props.youId === props.userId) {
+            setEditMode(true);
+        } else {
+            setEditMode(false);
+        }
     };
 
     let deactivateEditMode = () => {

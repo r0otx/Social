@@ -4,6 +4,7 @@ import s from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import PostsContainer from "../Posts/PostsContainer";
 import Avatar from "./Avatar";
+import {NavLink} from "react-router-dom";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -27,12 +28,20 @@ const ProfileInfo = (props) => {
             <div className={s.BIO}>
                 <h1 className={s.page_name}>{props.profile.fullName}</h1>
                 <ProfileStatusWithHooks status={props.status}
-                                        updateStatus={props.updateStatus}/>
-                <div className={s.hover}/>
-                Search
-                Job: {props.profile.lookingForAJobDescription != null ? props.profile.lookingForAJobDescription : "Ищу работу"},<br/>
-                About Me: {props.profile.aboutMe != null ? "props.profile.aboutMe" : "Нет информации"}
-                <div className={s.hover}/>
+                                        updateStatus={props.updateStatus}
+                                        youId={props.youId}/>
+                <div>
+                    <div className={s.hover}/>
+                    <div className={s.editLink}><NavLink className={s.editA} to="/editprofile">Edit Profile</NavLink></div>
+                </div>
+                Search Job: {props.profile.lookingForAJob ? "Да" : "Нет"}<br/>
+                Job
+                Description: {props.profile.lookingForAJobDescription != null ? props.profile.lookingForAJobDescription : "Нет описания"}<br/>
+                About Me: {props.profile.aboutMe != null ? props.profile.aboutMe : "Обо мне"}
+                <div>
+                    <div className={s.hover}/>
+                    <div className={s.editLink}><NavLink className={s.editA} to="/editprofile">Edit Profile</NavLink></div>
+                </div>
                 Contacts: {profileLinks}
             </div>
             <div className={s.posts}>

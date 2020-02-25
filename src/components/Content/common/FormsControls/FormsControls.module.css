@@ -5,6 +5,7 @@
 
 .formControl.error span {
     color: red;
+    display: none;
 }
 
 .formControlSummaryError {
