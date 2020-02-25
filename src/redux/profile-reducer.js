@@ -10,15 +10,26 @@ const SET_USER_ABOUT_ME = "SET_USER_ABOUT_ME";
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Posts 1', likesCount: 0, stateLike: false},
-        {id: 2, message: 'Posts 2', likesCount: 0, stateLike: false},
-        {id: 3, message: 'Posts 3', likesCount: 0, stateLike: false},
-        {id: 4, message: 'Posts 4', likesCount: 0, stateLike: false}
+        {id: 1,
+            message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
+            likesCount: 0,
+            stateLike: false},
+        {id: 2,
+            message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
+            likesCount: 0,
+            stateLike: false},
+        {id: 3,
+            message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
+            likesCount: 0,
+            stateLike: false},
+        {id: 4,
+            message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
+            likesCount: 0,
+            stateLike: false}
     ],
     profile: null,
     status: '',
-    avatar: null,
-    profileInfo: []
+    avatar: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -60,7 +71,7 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_ABOUT_ME: {
             return {
                 ...state,
-                profileInfo: action.formData
+                profile: action.formData
             }
         }
         default:

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import s from "./ProfileInfo.module.css";
+import grid from "./Avatar.module.css";
 import noAvatar from "../../../../assets/images/noavatar.png";
+import Preloader from "../../common/Preloader/Preloader";
 
 const Avatar = (props) => {
 
@@ -11,7 +12,6 @@ const Avatar = (props) => {
 
     let fileInput = React.createRef();
     let handleSubmit = (avatarFile) => {
-        debugger
         avatarFile.preventDefault();
         let formData = new FormData();
         formData.append("image", fileInput.current.files[0]);
@@ -24,29 +24,27 @@ const Avatar = (props) => {
             fileName: fileInput.current.files[0].name
         });
     };
-    let clickButton = () => {
-        setState({
-            fileSelected: false,
-            fileName: ''
-        });
-    };
+
+    if (!props.profile) {
+        return <Preloader/>
+    }
 
     return (
-        <div>
-            <div className={s.avaImg}>
+        <div className={grid.avatar}>
+            <div className={grid.avatarImg}>
                 <img src={props.avatar !== null ? props.avatar : noAvatar}
                      alt={'Avatar'}
                      width={"200px"}
                      height={"200px"}/>
-                {props.youId === props.userId &&
-                <div className={s.photoUpdateBtn}>
+                {props.authorizedUserId === props.profile.userId &&
+                <div className={grid.buttonUpload}>
                     <form onSubmit={handleSubmit}>
-                        <label className={s.hideInput}>
+                        <label className={grid.hideInput}>
                             {!state.fileSelected ? 'Load Photo' : state.fileName}
                             <input type="file" ref={fileInput} onChange={inputChange} />
                         </label><br/>
                         {state.fileSelected &&
-                        <button className={s.uploadButton} type="submit">Upload</button>
+                        <button className={grid.uploadButton} type="submit">Upload</button>
                         }
                     </form>
                 </div>

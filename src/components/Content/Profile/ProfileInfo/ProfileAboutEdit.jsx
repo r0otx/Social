@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../../common/FormsControls/FormsControls";
 import s from "../../common/FormsControls/FormsControls.module.css";
-import style from "./ProfileInfo.module.css";
+import style from "./ProfileAboutEdit.module.css";
 import {connect} from "react-redux";
 import {getUserProfile, setUserAboutMe} from "../../../../redux/profile-reducer";
 import {required} from "../../../../utils/validators/validators";
@@ -89,7 +89,7 @@ const ProfileAboutMeForm = (props) => {
 
 const ProfileAboutMeReduxForm = reduxForm({form: 'aboutMeForm'})(ProfileAboutMeForm);
 
-const ProfileAboutMe = (props) => {
+const ProfileAboutEdit = (props) => {
 
     useEffect(() => {
         props.getAuthUserData();
@@ -116,4 +116,4 @@ let mapDispatchToProps = (state) => ({
 export default compose(
     connect(mapDispatchToProps, {setUserAboutMe, getUserProfile, getAuthUserData}),
     withAuthRedirect)
-(ProfileAboutMe);
+(ProfileAboutEdit);

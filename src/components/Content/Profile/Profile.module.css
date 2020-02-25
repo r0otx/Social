@@ -1,20 +1,6 @@
 .gridContainer {
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "block1 posts";
-    margin-top: -180px;
-}
-
-.block1 { grid-area: block1; }
-
-.posts {
-    grid-area: posts;
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    margin: 10px 10px -20px 0px;
-    padding: 0 0 10px 10px;
-    height: 330px;
-    max-width: 404px;
+    grid-template-rows: auto auto;
+    grid-template-areas: "avatar aboutMe" "friends posts";
 }

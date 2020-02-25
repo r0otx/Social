@@ -10,7 +10,7 @@ let maxLength30 = maxLengthCreator(3000);
 
 const PostsForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className={s.form}>
             <div>
                 <Field name={"profilePost"}
                        component={Textarea}
@@ -46,10 +46,12 @@ const Posts = (props) => {
     };
 
     let post = props.posts.map(post =>
-        <div id={post.id} key={post.id}>
+        <div className={s.marginPost} id={post.id} key={post.id}>
             <div className={s.avatar}><img src="https://i2.wp.com/it-tehnik.ru/wp-content/uploads/girl.png"
                                            alt={"userpic"}/></div>
             <div className={s.text}>{post.message}</div>
+            <div className={s.hover}/>
+            <div className={s.floatRight}>
             <div className={s.post}>Likes: {post.likesCount}
                 <div className={s.like}>
                     {post.stateLike
@@ -60,6 +62,7 @@ const Posts = (props) => {
                     }
                 </div>
             </div>
+            </div>
         </div>);
 
     let onSubmitPost = (values) => {
@@ -67,9 +70,9 @@ const Posts = (props) => {
     };
 
     return (
-        <div>
-            <PostsReduxForm onSubmit={onSubmitPost}/>
-            <div>{post}</div>
+        <div className={s.posts}>
+            <div className={s.inputArea}><PostsReduxForm onSubmit={onSubmitPost}/></div>
+            <div className={s.postsItem}>{post}</div>
         </div>
     );
 };

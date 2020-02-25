@@ -1,0 +1,47 @@
+.avatar {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "avatarImg" "buttonUpload";
+    grid-area: avatar;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 10px 10px 0 0;
+}
+
+.avatarImg {
+    grid-area: avatarImg;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    padding-top: 7px;
+}
+
+.buttonUpload {
+    grid-area: buttonUpload;
+    text-align: center;
+    margin: auto;
+}
+
+.hideInput input {
+    display: none;
+}
+
+.uploadButton {
+    color: #fff;
+    text-decoration: none;
+    background: #5181b8;
+    padding: .7em 1.5em;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.uploadButton:hover {
+    background: #2a5885;
+}
+
+.uploadButton:active {
+    background: rgb(152,15,0);
+}
