@@ -7,7 +7,8 @@ import {connect} from "react-redux";
 import {getUserProfile, setUserAboutMe} from "../../../../redux/profile-reducer";
 import {required} from "../../../../utils/validators/validators";
 import {getAuthUserData} from "../../../../redux/auth-reducer";
-import {withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const ProfileAboutMeForm = (props) => {
     return (
@@ -39,40 +40,40 @@ const ProfileAboutMeForm = (props) => {
                     <div>Links to Social Network</div>
                     <div className={style.formStyle}><label>Facebook:</label>
                         <Field placeholder={"Social Facebook"}
-                               name={"facebook"}
+                               name={"contacts." + "facebook"}
                                component={Input}/></div>
                     <div className={style.formStyle}><label>Site:</label>
                         <Field placeholder={"Social WebSite"}
-                               name={"website"}
+                               name={"contacts." + "website"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Vkontakte:</label>
                         <Field placeholder={"Social Vkontakte"}
-                               name={"vk"}
+                               name={"contacts." + "vk"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Twitter:</label>
                         <Field placeholder={"Social Twitter"}
-                               name={"twitter"}
+                               name={"contacts." + "twitter"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Instagram:</label>
                         <Field placeholder={"Social Instagram"}
-                               name={"instagram"}
+                               name={"contacts." + "instagram"}
                                component={Input}/></div>
                     <div className={style.formStyle}><label>Youtube:</label>
                         <Field placeholder={"Social Youtube"}
-                               name={"youtube"}
+                               name={"contacts." + "youtube"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Github:</label>
                         <Field placeholder={"Social Github"}
-                               name={"github"}
+                               name={"contacts." + "github"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>MainLink:</label>
                         <Field placeholder={"Social Mainlink"}
-                               name={"mainlink"}
+                               name={"contacts." + "mainlink"}
                                component={Input}/></div>
                     {props.error && <div className={s.formControlSummaryError}>
                         {props.error}
@@ -112,4 +113,7 @@ let mapDispatchToProps = (state) => ({
     authorizedUserId: state.auth.userId
 });
 
-export default connect(mapDispatchToProps, {setUserAboutMe, getUserProfile, getAuthUserData})(ProfileAboutMe);
+export default compose(
+    connect(mapDispatchToProps, {setUserAboutMe, getUserProfile, getAuthUserData}),
+    withAuthRedirect)
+(ProfileAboutMe);
