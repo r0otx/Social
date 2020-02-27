@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './Content.module.css';
-import Messages from "./Messages/Messages";
 import {Route} from "react-router-dom";
 import Album from "./Album/Album";
 import Music from "./Music/Music";
@@ -11,7 +10,8 @@ import Login from "./Login/Login";
 import {connect} from "react-redux";
 import {getInitialized} from "../../redux/content-reducer";
 import Preloader from "./common/Preloader/Preloader";
-import ProfileAboutEdit from "./Profile/ProfileInfo/ProfileAboutEdit";
+import ProfileAboutEdit from "./Profile/ProfileAboutEdit";
+import MessagesContainer from "./Messages/MessagesContainer";
 
 class Content extends React.Component {
     componentDidMount() {
@@ -26,7 +26,7 @@ class Content extends React.Component {
             <div className={s.content}>
                 <Route path='/login' render={() => <Login/>}/>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                <Route path='/messages' render={() => <Messages/>}/>
+                <Route path='/messages' render={() => <MessagesContainer/>}/>
                 <Route path='/users' render={() => <UsersContainer/>}/>
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/album' render={() => <Album/>}/>

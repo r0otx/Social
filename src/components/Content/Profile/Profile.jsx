@@ -9,7 +9,7 @@ const Profile = (props) => {
 
     return (
         <div className={s.gridContainer}>
-            <Avatar {...props} updateAvatar={props.updateAvatar}/>
+            <Avatar {...props} updateAvatar={props.updateAvatar} startNewChat={props.startNewChat}/>
             <Friends/>
             <ProfileInfo {...props}/>
             <PostsContainer/>

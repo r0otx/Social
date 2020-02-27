@@ -12,7 +12,8 @@ const DialogsForm = (props) => {
             <div className={s.inputArea}>
                 <Field placeholder={"Ваше сообщение"}
                        validate={[required, maxLength150]}
-                       name={"newMessage"}
+                       name={"message"}
+                       disabled={!props.selectedUserId}
                        component={Textarea}/>
             </div>
             <div>
@@ -25,23 +26,22 @@ const DialogsForm = (props) => {
 const DialogsReduxForm = reduxForm({form: 'messages'})(DialogsForm);
 
 const Dialogs = (props) => {
-    let message = props.messagesItem.map(message => <li id={message.id} key={message.id}>{message.message}</li>);
 
-    let addNewMessage = (values) => {
-        props.sendMessage(values.newMessage);
+    let messages = props.messagesItem.map(message => <li id={message.id} key={message.id}>{message.body}</li>);
+
+    let addNewMessage = (message) => {
+        props.sendNewMessage(props.selectedUserId, message);
     };
 
     return (
-        <div>
             <div className={s.dialogsColumn}>
                 <div className={s.dialogs}>
-                {message}
+                    {messages}
                 </div>
                 <div className={s.inputArea}>
-                    <DialogsReduxForm onSubmit={addNewMessage}/>
+                    <DialogsReduxForm onSubmit={addNewMessage} selectedUserId={props.selectedUserId}/>
                 </div>
             </div>
-        </div>
     );
 };
 

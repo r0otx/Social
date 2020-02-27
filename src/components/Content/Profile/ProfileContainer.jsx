@@ -9,6 +9,7 @@ import {
     updateUserStatus
 } from "../../../redux/profile-reducer";
 import {compose} from "redux";
+import {startNewChat} from "../../../redux/message-reducer";
 
 class ProfileContainer extends React.Component {
 
@@ -28,7 +29,8 @@ class ProfileContainer extends React.Component {
         return (
             <Profile {...this.props}
                      updateStatus={this.props.updateUserStatus}
-                     updateAvatar={this.props.updateUserAvatar}/>
+                     updateAvatar={this.props.updateUserAvatar}
+                     startNewChat={this.props.startNewChat}/>
         );
     }
 }
@@ -46,7 +48,8 @@ export default compose(
         getUserProfile,
         getUserStatus,
         updateUserStatus,
-        updateUserAvatar
+        updateUserAvatar,
+        startNewChat
     }),
     withRouter
 )(ProfileContainer);

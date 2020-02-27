@@ -1,14 +1,14 @@
 import React from "react";
 import s from './Messages.module.css';
-import DialogsContainer from "./Dialogs/DialogsContainer";
-import UsersContainer from "./Users/UsersContainer";
+import Users from "./Users/Users";
+import Dialogs from "./Dialogs/Dialogs";
 
-const Messages = () => {
+const Messages = (props) => {
 
     return (
         <div className={s.gridMessages}>
-            <UsersContainer/>
-            <DialogsContainer/>
+            <Users {...props}/>
+            <Dialogs {...props}/>
         </div>
     );
 }

@@ -44,6 +44,6 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.18.0"
+    "eslint-plugin-react": "^7.18.3"
   }
 }

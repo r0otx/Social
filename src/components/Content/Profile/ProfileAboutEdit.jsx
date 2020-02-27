@@ -1,18 +1,17 @@
 import React, {useEffect} from "react";
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../../common/FormsControls/FormsControls";
-import s from "../../common/FormsControls/FormsControls.module.css";
+import {Input} from "../common/FormsControls/FormsControls";
+import s from "../common/FormsControls/FormsControls.module.css";
 import style from "./ProfileAboutEdit.module.css";
 import {connect} from "react-redux";
-import {getUserProfile, setUserAboutMe} from "../../../../redux/profile-reducer";
-import {required} from "../../../../utils/validators/validators";
-import {getAuthUserData} from "../../../../redux/auth-reducer";
-import {withAuthRedirect} from "../../../../hoc/withAuthRedirect";
+import {getUserProfile, setUserAboutMe} from "../../../redux/profile-reducer";
+import {required} from "../../../utils/validators/validators";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 const ProfileAboutMeForm = (props) => {
     return (
-        <>
+        <div>
             <div className={style.main}>
                 <div className={style.mainText}>Основное</div>
             </div>
@@ -40,40 +39,40 @@ const ProfileAboutMeForm = (props) => {
                     <div>Links to Social Network</div>
                     <div className={style.formStyle}><label>Facebook:</label>
                         <Field placeholder={"Social Facebook"}
-                               name={"contacts." + "facebook"}
+                               name={"contacts.facebook"}
                                component={Input}/></div>
                     <div className={style.formStyle}><label>Site:</label>
                         <Field placeholder={"Social WebSite"}
-                               name={"contacts." + "website"}
+                               name={"contacts.website"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Vkontakte:</label>
                         <Field placeholder={"Social Vkontakte"}
-                               name={"contacts." + "vk"}
+                               name={"contacts.vk"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Twitter:</label>
                         <Field placeholder={"Social Twitter"}
-                               name={"contacts." + "twitter"}
+                               name={"contacts.twitter"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Instagram:</label>
                         <Field placeholder={"Social Instagram"}
-                               name={"contacts." + "instagram"}
+                               name={"contacts.instagram"}
                                component={Input}/></div>
                     <div className={style.formStyle}><label>Youtube:</label>
                         <Field placeholder={"Social Youtube"}
-                               name={"contacts." + "youtube"}
+                               name={"contacts.youtube"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>Github:</label>
                         <Field placeholder={"Social Github"}
-                               name={"contacts." + "github"}
+                               name={"contacts.github"}
                                component={Input}/>
                     </div>
                     <div className={style.formStyle}><label>MainLink:</label>
                         <Field placeholder={"Social Mainlink"}
-                               name={"contacts." + "mainlink"}
+                               name={"contacts.mainlink"}
                                component={Input}/></div>
                     {props.error && <div className={s.formControlSummaryError}>
                         {props.error}
@@ -83,7 +82,7 @@ const ProfileAboutMeForm = (props) => {
                     </div>
                 </div>
             </form>
-        </>
+        </div>
     );
 };
 
@@ -91,10 +90,11 @@ const ProfileAboutMeReduxForm = reduxForm({form: 'aboutMeForm'})(ProfileAboutMeF
 
 const ProfileAboutEdit = (props) => {
 
+    let {getUserProfile, authorizedUserId} = props;
+
     useEffect(() => {
-        props.getAuthUserData();
-        props.getUserProfile(props.authorizedUserId);
-    }, []);
+        getUserProfile(authorizedUserId);
+    }, [getUserProfile, authorizedUserId]);
 
     const onSubmit = (formData) => {
         props.setUserAboutMe(formData);
@@ -103,7 +103,7 @@ const ProfileAboutEdit = (props) => {
         <div className={style.gridContainerSetting}>
             <div className={style.content}><ProfileAboutMeReduxForm onSubmit={onSubmit} initialValues={props.profile}/>
             </div>
-            <div className={style.nav}></div>
+            <div className={style.nav} />
         </div>
     )
 };
@@ -114,6 +114,6 @@ let mapDispatchToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapDispatchToProps, {setUserAboutMe, getUserProfile, getAuthUserData}),
+    connect(mapDispatchToProps, {setUserAboutMe, getUserProfile}),
     withAuthRedirect)
 (ProfileAboutEdit);

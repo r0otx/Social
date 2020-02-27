@@ -6,13 +6,16 @@ import {connect} from "react-redux";
 import {login} from "../../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import s from "./../common/FormsControls/FormsControls.module.css";
+import style from "./Login.module.css";
 
 let maxLength = maxLengthCreator(32);
 
 const LoginForm = (props) => {
     return (
-        <div>
-            <h2>Login</h2>
+        <div className={style.loginForm}>
+            <div className={style.main}>
+            <h2 className={style.mainText}>Login</h2>
+            </div>
             <form onSubmit={props.handleSubmit}>
                 <div><Field placeholder={"Email"}
                             name={"email"}

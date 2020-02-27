@@ -18,7 +18,7 @@ let Users = (props) => {
         <div>
             <div>
                 {pagesNum.map(p => {
-                        return <span className={(props.currentPage === p) ? s.selectedPage : s.otherPage} onClick={() => {
+                        return <span key={p} className={(props.currentPage === p) ? s.selectedPage : s.otherPage} onClick={() => {
                             props.onPageChanged(p);
                         }}>{p}</span>
                     }
@@ -41,16 +41,13 @@ let Users = (props) => {
                                     props.follow(u.id); }
                                 }>Follow</button>
                             }
+                            <div><NavLink to={`messages/${u.id}`}><button onClick={() => props.startNewChat(u.id, u.name)}>Send Message</button></NavLink></div>
                         </div>
                     </span>
                     <span>
                         <span>
                             <div>{u.name}</div>
                             <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{"u.location.country"}</div>
-                            <div>{"u.location.city"}</div>
                         </span>
                     </span>
                 </div>)}

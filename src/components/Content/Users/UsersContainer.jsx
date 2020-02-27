@@ -1,12 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {
-    follow,
-    requestUsers,
-    setCurrentPage,
-    setFollowProgress,
-    unfollow
-} from "../../../redux/users-reducer";
+import {follow, requestUsers, setCurrentPage, setFollowProgress, unfollow} from "../../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
@@ -19,30 +13,33 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../../redux/users-selectors";
+import {startNewChat} from "../../../redux/message-reducer";
 
-class UsersContainer extends React.Component {
-    componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
-    }
+const UsersContainer = (props) => {
 
-    onPageChanged = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+    let {requestUsers, currentPage, pageSize} = props;
+
+    useEffect(() => {
+        requestUsers(currentPage, pageSize);
+    }, [requestUsers, currentPage, pageSize]);
+
+    let onPageChanged = (pageNumber) => {
+        props.requestUsers(pageNumber, props.pageSize);
     };
-
-    render() {
-        return (<>
-            {this.props.isFetching ? <Preloader/> : null}
-            <Users totalUsersCount={this.props.totalUsersCount}
-                   pageSize={this.props.pageSize}
-                   onPageChanged={this.onPageChanged}
-                   currentPage={this.props.currentPage}
-                   users={this.props.users}
-                   unfollow={this.props.unfollow}
-                   follow={this.props.follow}
-                   followProgress={this.props.followProgress}
-            />
-        </>);
-    }
+    return (
+        <div>
+            {props.isFetching ? <Preloader/> : null}
+            <Users totalUsersCount={props.totalUsersCount}
+                   pageSize={props.pageSize}
+                   onPageChanged={onPageChanged}
+                   currentPage={props.currentPage}
+                   users={props.users}
+                   unfollow={props.unfollow}
+                   follow={props.follow}
+                   followProgress={props.followProgress}
+                   startNewChat={props.startNewChat}/>
+        </div>
+    );
 };
 
 let mapStateToProps = (state) => {
@@ -62,7 +59,8 @@ export default compose(
         unfollow,
         setCurrentPage,
         setFollowProgress,
-        requestUsers
+        requestUsers,
+        startNewChat
     }),
     withAuthRedirect
 )(UsersContainer);

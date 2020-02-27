@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import s from './Post.module.css';
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../../utils/validators/validators";
@@ -29,10 +29,6 @@ const PostsReduxForm = reduxForm({form: 'profilePost'})(PostsForm);
 const Posts = (props) => {
 
     const [posts, setPosts] = useState([]);
-    useEffect(() => {
-        setPosts([props.posts
-        ]);
-    }, []);
 
     const handlerLike = (id) => {
         const post = props.posts.find(e => {

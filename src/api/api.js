@@ -58,3 +58,19 @@ export const authAPI = {
         return instance.get(`security/get-captcha-url`);
     }
 };
+
+//Messages Page
+export const messageAPI = {
+    startChat(userId) {
+        return instance.put(`dialogs/${userId}`);
+    },
+    sendMessage(userId, {message}) {
+        return instance.post(`dialogs/${userId}/messages`, {body: message});
+    },
+    getUsersChat() {
+        return instance.get(`dialogs`);
+    },
+    getMessagesChat(userId) {
+        return instance.get(`dialogs/${userId}/messages`);
+    }
+};

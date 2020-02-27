@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import grid from "./Avatar.module.css";
 import noAvatar from "../../../../assets/images/noavatar.png";
 import Preloader from "../../common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 const Avatar = (props) => {
 
@@ -49,6 +50,15 @@ const Avatar = (props) => {
                     </form>
                 </div>
                 }
+                <div className={grid.buttonUpload}>
+                {props.authorizedUserId !== props.profile.userId &&
+                <NavLink to={`/messages/${props.profile.userId}`}>
+                    <button onClick={() => props.startNewChat(props.profile.userId, props.profile.fullName)}>Send
+                        Message
+                    </button>
+                </NavLink>
+                }
+                </div>
             </div>
         </div>
     );
