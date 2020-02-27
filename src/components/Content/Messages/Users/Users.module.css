@@ -17,6 +17,10 @@
     border-bottom: 1px solid #edeef0;
 }
 
+.usersBodyHover li {
+    background: #e1e5eb;
+}
+
 .usersColumn::-webkit-scrollbar {
     display: none;
 }

@@ -1,17 +1,19 @@
 import React from "react";
-import s from "./Nav.module.css";
 import {NavLink} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faComments, faUserPlus, faMusic, faImages, faUserCog} from "@fortawesome/free-solid-svg-icons";
 
-const Nav = () => {
+const Nav = (props) => {
+
+    props.getNewMessagesCount();
+
     return (
-        <div className={s.nav}>
+        <div>
             <NavLink to="/profile">
                 <li><FontAwesomeIcon icon={faHome} />Profile</li>
             </NavLink>
             <NavLink to="/messages">
-                <li><FontAwesomeIcon icon={faComments} />Messages</li>
+                <li><FontAwesomeIcon icon={faComments} />Messages ({props.messagesCount})</li>
             </NavLink>
             <NavLink to="/users">
                 <li><FontAwesomeIcon icon={faUserPlus} />Find Users</li>

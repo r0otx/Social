@@ -11,7 +11,7 @@ const Users = (props) => {
     }, [getAllUsersChat]);
 
 
-    let user = props.usersItem.map(user => <NavLink to={"/messages/" + user.id} key={user.id}>
+    let user = props.usersItem.map(user => <NavLink activeClassName={s.usersBodyHover} to={"/messages/" + user.id} key={user.id}>
         <li className={s.usersBody} onClick={() => {
             props.selectUser(user.id);
             props.getAllMessages(user.id);

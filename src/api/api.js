@@ -72,5 +72,8 @@ export const messageAPI = {
     },
     getMessagesChat(userId) {
         return instance.get(`dialogs/${userId}/messages`);
+    },
+    getNewMessagesCount() {
+        return instance.get(`dialogs/messages/new/count`);
     }
 };
