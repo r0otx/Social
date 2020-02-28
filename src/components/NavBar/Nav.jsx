@@ -5,8 +5,6 @@ import {faHome, faComments, faUserPlus, faMusic, faImages, faUserCog} from "@for
 
 const Nav = (props) => {
 
-    props.getNewMessagesCount();
-
     return (
         <div>
             <NavLink to="/profile">

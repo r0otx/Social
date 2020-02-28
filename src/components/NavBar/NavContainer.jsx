@@ -6,6 +6,8 @@ import s from "./Nav.module.css";
 
 const NavContainer = (props) => {
 
+    props.getNewMessagesCount();
+
     return (
         <div className={s.nav}>
             <Nav messagesCount={props.messagesCount} getNewMessagesCount={props.getNewMessagesCount} />

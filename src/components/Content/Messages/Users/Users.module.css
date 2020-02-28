@@ -21,6 +21,14 @@
     background: #e1e5eb;
 }
 
+.avaMsg {
+    display: -webkit-box;
+}
+
+.avaMsg img {
+    margin-bottom: -4px;
+}
+
 .usersColumn::-webkit-scrollbar {
     display: none;
 }

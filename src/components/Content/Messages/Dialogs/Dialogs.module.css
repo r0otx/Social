@@ -39,11 +39,21 @@
     background: rgb(152,15,0);
 }
 
+.dialogItem {
+    padding: 20px;
+    border-bottom: 1px solid #edeef0;
+}
+
+.dialogItem:hover {
+    background: #edeef0;
+}
 
 .dialogs {
     max-height: 500px;
     height: 500px;
-    overflow-y:auto
+    overflow-y: auto;
+    border-bottom: 1px solid #edeef0;
+    margin-bottom: 10px;
 }
 
 li {

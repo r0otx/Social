@@ -121,6 +121,7 @@ export const startNewChat = (userId, userName) => (dispatch) => {
     messageAPI.startChat(userId).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(addNewChat(userId, userName));
+            dispatch(selectUser(userId));
         }
     })
 };
