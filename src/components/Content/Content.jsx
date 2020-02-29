@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Content.module.css';
-import {Route} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import Album from "./Album/Album";
 import Music from "./Music/Music";
 import Setting from "./Setting/Setting";
@@ -22,8 +22,10 @@ class Content extends React.Component {
         if (!this.props.initialized) {
             return <Preloader/>
         }
+
         return (
             <div className={s.content}>
+                <Redirect from="/" to="/profile"/>
                 <Route path='/login' render={() => <Login/>}/>
                 <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                 <Route path='/messages' render={() => <MessagesContainer/>}/>
