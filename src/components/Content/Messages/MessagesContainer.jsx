@@ -1,7 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import Messages from "./Messages";
-import {addMessage, getAllMessages, getAllUsersChat, selectUser, sendNewMessage} from "../../../redux/message-reducer";
+import {
+    addMessage,
+    deleteMessage,
+    getAllMessages,
+    getAllUsersChat,
+    selectUser,
+    sendNewMessage
+} from "../../../redux/message-reducer";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
@@ -26,7 +33,8 @@ export default compose(connect(mapDispatchToProps, {
         getAllMessages,
         addMessage,
         sendNewMessage,
-        selectUser
+        selectUser,
+        deleteMessage
     }),
     withAuthRedirect
 )(MessagesContainer);

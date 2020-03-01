@@ -6,6 +6,7 @@ const GET_USERS = "GET_USERS";
 const GET_MESSAGES = "GET_MESSAGES";
 const SELECT_USER = "SELECT_USER";
 const MESSAGES_COUNT = "MESSAGES_COUNT";
+const DEL_MESSAGE = "DEL_MESSAGE";
 
 let initialState = {
     usersItem: [],
@@ -17,7 +18,6 @@ let initialState = {
 const messageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
-
             let newMessage = {
                 id: action.newMessage.data.message.id,
                 body: action.newMessage.data.message.body,
@@ -36,6 +36,11 @@ const messageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messagesItem: [...state.messagesItem, newMessage]
+            };
+        case DEL_MESSAGE:
+            return {
+                ...state,
+                messagesItem: state.messagesItem.filter(item => item.id !== action.messageId)
             };
         case GET_MESSAGES:
             return {
@@ -98,6 +103,12 @@ export const getMessages = (messages) => {
     }
 };
 
+export const delMessage = (messageId) => {
+    return {
+        type: DEL_MESSAGE, messageId
+    }
+};
+
 export const addMessage = (newMessage) => {
     return {
         type: ADD_MESSAGE, newMessage
@@ -148,8 +159,16 @@ export const sendNewMessage = (userId, message) => (dispatch) => {
 
 export const getNewMessagesCount = () => (dispatch) => {
     messageAPI.getNewMessagesCount().then(response => {
-            dispatch(messagesCount(response.data));
+        dispatch(messagesCount(response.data));
     })
+};
+
+export const deleteMessage = (messageId) => (dispatch) => {
+    messageAPI.delMessages(messageId).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(delMessage(messageId));
+        }
+    });
 };
 
 export default messageReducer;

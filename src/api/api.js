@@ -75,5 +75,8 @@ export const messageAPI = {
     },
     getNewMessagesCount() {
         return instance.get(`dialogs/messages/new/count`);
+    },
+    delMessages(messageId) {
+        return instance.delete(`dialogs/messages/${messageId}`);
     }
 };

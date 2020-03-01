@@ -1,6 +1,6 @@
 .dialogsColumn {
     grid-area: dialogsColumn;
-    margin-left: 1px;
+    margin-left: 2px;
     height: 100%;
     box-sizing: border-box;
     border-top-left-radius: 0;
@@ -40,7 +40,7 @@
 }
 
 .dialogItem {
-    padding: 20px;
+    padding: 18px;
     border-bottom: 1px solid #edeef0;
 }
 
@@ -56,6 +56,6 @@
     margin-bottom: 10px;
 }
 
-li {
-    margin-left: 5px;
+li span {
+    float: right;
 }

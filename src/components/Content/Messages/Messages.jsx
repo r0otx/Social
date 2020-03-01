@@ -11,6 +11,6 @@ const Messages = (props) => {
             <Dialogs {...props}/>
         </div>
     );
-}
+};
 
 export default Messages;
