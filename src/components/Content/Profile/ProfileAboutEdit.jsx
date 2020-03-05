@@ -78,7 +78,7 @@ const ProfileAboutMeForm = (props) => {
                         {props.error}
                     </div>}
                     {props.submitSucceeded && <div className={s.formControlSummarySuccess}>
-                        Success Save!
+                        Success Save
                     </div>}
                     <div>
                         <button>Save</button>
