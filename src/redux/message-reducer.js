@@ -1,4 +1,5 @@
 import {messageAPI} from "../api/api";
+import {reset} from "redux-form";
 
 const ADD_MESSAGE = "ADD_MESSAGE";
 const ADD_USER = "ADD_USER";
@@ -128,47 +129,42 @@ export const messagesCount = (count) => {
 };
 
 //Thunks
-export const startNewChat = (userId, userName) => (dispatch) => {
-    messageAPI.startChat(userId).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(addNewChat(userId, userName));
-            dispatch(selectUser(userId));
-        }
-    })
+export const startNewChat = (userId, userName) => async (dispatch) => {
+    let response = await messageAPI.startChat(userId);
+    if (response.data.resultCode === 0) {
+        dispatch(addNewChat(userId, userName));
+        dispatch(selectUser(userId));
+    }
 };
 
-export const getAllUsersChat = () => (dispatch) => {
-    messageAPI.getUsersChat().then(response => {
-        dispatch(getUsers(response.data));
-    })
+export const getAllUsersChat = () => async (dispatch) => {
+    let response = await messageAPI.getUsersChat();
+    dispatch(getUsers(response.data));
 };
 
-export const getAllMessages = (userId) => (dispatch) => {
-    messageAPI.getMessagesChat(userId).then(response => {
-        dispatch(getMessages(response.data.items));
-    })
+export const getAllMessages = (userId) => async (dispatch) => {
+    let response = await messageAPI.getMessagesChat(userId);
+    dispatch(getMessages(response.data.items));
 };
 
-export const sendNewMessage = (userId, message) => (dispatch) => {
-    messageAPI.sendMessage(userId, message).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(addMessage(response.data));
-        }
-    })
+export const sendNewMessage = (userId, message) => async (dispatch) => {
+    let response = await messageAPI.sendMessage(userId, message);
+    if (response.data.resultCode === 0) {
+        dispatch(addMessage(response.data));
+        dispatch(reset('messages'));
+    }
 };
 
-export const getNewMessagesCount = () => (dispatch) => {
-    messageAPI.getNewMessagesCount().then(response => {
-        dispatch(messagesCount(response.data));
-    })
+export const getNewMessagesCount = () => async (dispatch) => {
+    let response = await messageAPI.getNewMessagesCount();
+    dispatch(messagesCount(response.data));
 };
 
-export const deleteMessage = (messageId) => (dispatch) => {
-    messageAPI.delMessages(messageId).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(delMessage(messageId));
-        }
-    });
+export const deleteMessage = (messageId) => async (dispatch) => {
+    let response = await messageAPI.delMessages(messageId);
+    if (response.data.resultCode === 0) {
+        dispatch(delMessage(messageId));
+    }
 };
 
 export default messageReducer;

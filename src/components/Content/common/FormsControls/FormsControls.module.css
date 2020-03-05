@@ -14,3 +14,10 @@
     padding: 5px;
     color: yellowgreen;
 }
+
+.formControlSummarySuccess {
+    width: 200px;
+    border: green 1px solid;
+    padding: 5px;
+    color: yellowgreen;
+}

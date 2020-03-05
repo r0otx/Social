@@ -10,6 +10,57 @@
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
 }
 
+.messageContainer {
+    display: grid;
+    grid-template-columns: 55px 1fr 20px;
+    grid-template-rows: 25px auto;
+    grid-template-areas: "avatar name buttons" "avatar message buttons";
+    padding-top: 10px;
+}
+
+.messageContainer:hover {
+    background: #edeef0;
+}
+
+.avatar {
+    grid-area: avatar;
+}
+
+.avatar img {
+    border-radius: 25px;
+}
+
+.name {
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". time";
+    grid-area: name;
+}
+
+.time {
+    grid-area: time;
+    color: hsla(220,8%,51%,.6);
+}
+
+.message {
+    grid-area: message;
+}
+
+.buttons {
+    grid-area: buttons;
+    color: #86adff;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.buttons:hover {
+    color: black;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 .inputArea {
     margin-left: 5px;
 }
@@ -36,11 +87,12 @@
 }
 
 .inputArea button:active {
-    background: rgb(152,15,0);
+    background: rgb(152, 15, 0);
 }
 
 .dialogItem {
-    padding: 18px;
+    display: flex;
+    padding: 10px;
     border-bottom: 1px solid #edeef0;
 }
 
@@ -54,8 +106,4 @@
     overflow-y: auto;
     border-bottom: 1px solid #edeef0;
     margin-bottom: 10px;
-}
-
-li span {
-    float: right;
 }

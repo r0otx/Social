@@ -10,22 +10,30 @@ const SET_USER_ABOUT_ME = "SET_USER_ABOUT_ME";
 
 let initialState = {
     posts: [
-        {id: 1,
+        {
+            id: 1,
             message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
             likesCount: 0,
-            stateLike: false},
-        {id: 2,
+            stateLike: false
+        },
+        {
+            id: 2,
             message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
             likesCount: 0,
-            stateLike: false},
-        {id: 3,
+            stateLike: false
+        },
+        {
+            id: 3,
             message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
             likesCount: 0,
-            stateLike: false},
-        {id: 4,
+            stateLike: false
+        },
+        {
+            id: 4,
             message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quam urna, auctor quis pellentesque at, lacinia a leo. Nullam at lorem ante. Proin auctor tempus bibendum. Nullam vel ullamcorper tortor. Maecenas ullamcorper commodo est nec bibendum. Aenean id arcu sit amet urna vestibulum lobortis. Curabitur at orci ut massa semper lacinia. Pellentesque nec fermentum nisl, ut mollis lorem. Integer a ipsum auctor, dictum ipsum et, vehicula lorem. Nulla aliquam, risus ut imperdiet sagittis, quam sapien sagittis arcu, at placerat augue orci ut quam. Vivamus varius a nisi at vulputate. Curabitur suscipit commodo velit, at molestie turpis auctor quis. Duis facilisis.',
             likesCount: 0,
-            stateLike: false}
+            stateLike: false
+        }
     ],
     profile: null,
     status: '',
@@ -107,44 +115,39 @@ export const setUserStatus = (status) => {
 };
 
 //Thunks
-export const getUserProfile = (userId) => (dispatch) => {
-    profileAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response.data));
-        dispatch(addAvatarActionCreator(response.data.photos.large));
-    })
+export const getUserProfile = (userId) => async (dispatch) => {
+    let response = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data));
+    dispatch(addAvatarActionCreator(response.data.photos.large));
 };
 
-export const setUserAboutMe = (formData) => (dispatch) => {
-    profileAPI.setAboutMe(formData).then(response => {
-        if (response.data.resultCode === 1) {
-            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
-            dispatch(stopSubmit("aboutMeForm", {_error: message}));
-        } else {
-        dispatch(addAboutMeActionCreator(formData))
+export const setUserAboutMe = (formData) => async (dispatch) => {
+    let response = await profileAPI.setAboutMe(formData);
+    if (response.data.resultCode === 1) {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        dispatch(stopSubmit("aboutMeForm", {_error: message}));
+    } else {
+        dispatch(addAboutMeActionCreator(formData));
     }
-    })
 };
 
-export const getUserStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
-        dispatch(setUserStatus(response.data));
-    })
+export const getUserStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId);
+    dispatch(setUserStatus(response.data));
 };
 
-export const updateUserStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setUserStatus(status));
-        }
-    })
+export const updateUserStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(setUserStatus(status));
+    }
 };
 
-export const updateUserAvatar = (avatarFile) => (dispatch) => {
-    profileAPI.updatePhoto(avatarFile).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(addAvatarActionCreator(response.data.data.photos.large));
-        }
-    })
+export const updateUserAvatar = (avatarFile) => async (dispatch) => {
+    let response = await profileAPI.updatePhoto(avatarFile);
+    if (response.data.resultCode === 0) {
+        dispatch(addAvatarActionCreator(response.data.data.photos.large));
+    }
 };
 
 export default profileReducer;

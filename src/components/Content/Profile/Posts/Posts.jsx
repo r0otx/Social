@@ -9,6 +9,7 @@ import unlike from "../../../../assets/images/unlike.png";
 let maxLength30 = maxLengthCreator(3000);
 
 const PostsForm = (props) => {
+
     return (
         <form onSubmit={props.handleSubmit} className={s.form}>
             <div>
