@@ -10,6 +10,7 @@ import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 const ProfileAboutMeForm = (props) => {
+
     return (
         <div>
             <div className={style.main}>

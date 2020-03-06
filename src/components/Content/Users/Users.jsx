@@ -2,32 +2,21 @@ import React from "react";
 import s from "./users.module.css";
 import noPhoto from "../../../assets/images/noPhoto.jpg";
 import {NavLink} from "react-router-dom";
+import Pagination from "../common/Pagination/Pagination";
 
 let Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pagesNum = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        if (i <= 20) {
-            pagesNum.push(i);
-        }
-    }
 
     return (
         <div className={s.bodyPage}>
-            <div>
-                {pagesNum.map(p => {
-                        return <span key={p} className={(props.currentPage === p) ? s.selectedPage : s.otherPage}
-                                     onClick={() => {
-                                         props.onPageChanged(p);
-                                     }}>{p}</span>
-                    }
-                )}
-            </div>
+            <Pagination totalUsersCount={props.totalUsersCount}
+                        pageSize={props.pageSize}
+                        currentPage={props.currentPage}
+                        onPageChanged={props.onPageChanged}/>
+
             <div className={s.body}>
-            {props.users.map(u =>
-                <div key={u.id} className={s.userItem}>
+                {props.users.map(u =>
+                    <div key={u.id} className={s.userItem}>
                     <span>
                         <div>{u.name}</div>
                         <div className={s.avatar}>
@@ -50,12 +39,12 @@ let Users = (props) => {
                                 onClick={() => props.startNewChat(u.id, u.name)}>Send Message</button></NavLink></div>
                         </div>
                     </span>
-                    <span>
+                        <span>
                         <span>
                             <div>{u.status}</div>
                         </span>
                     </span>
-                </div>)}
+                    </div>)}
             </div>
         </div>
     );
